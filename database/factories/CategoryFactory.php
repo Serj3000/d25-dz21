@@ -21,6 +21,8 @@ $factory->define(\App\Category::class, function (Faker $faker) {
     return [
         'name' => $faker->word,
         'slug' => $faker->slug,
+        'created_at'=>date('Y-m-d'),
+        'updated_at'=>date('Y-m-d'),
     ];
 });
 

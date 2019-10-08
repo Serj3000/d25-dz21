@@ -2,6 +2,7 @@
 
 use App\Post;
 use App\Category;
+use App\User;
 
 
 /*
@@ -63,62 +64,36 @@ Route::get('/categories', function () {
 
 //___________________________________________
 
-// Route::get('/categories/features', function () {
-//     $result='eeeeeeeeeee';
-//     dd($result);
-//     //return view('categories');
-//  })->name('blog.categories-features');
+Route::get('/admin/login', function () {
+    //return view('admin.login');
+    return view('/admin/login');
+ })->name('admin.login.get');;
 
-//  Route::get('/categories/food', function () {
-//     $result='eeeeeeeeeee';
-//     dd($result);
-//     //return view('categories');
-//  })->name('blog.categories-food');
+ Route::post('/admin/login', function (Illuminate\Http\Request $request) {
 
-//  Route::get('/categories/travel', function () {
-//     $result='eeeeeeeeeee';
-//     dd($result);
-//     //return view('categories');
-//  })->name('blog.categories-travel');
+    $data=$request->validate([
+        'email'=>'required|email|exists:users.email',
+        'password'=>'required|min:8|max:100',
+    ]);
 
-//  Route::get('/categories/recipe', function () {
-//     $result='eeeeeeeeeee';
-//     dd($result);
-//     //return view('categories');
-//  })->name('blog.categories-recipe');
+    $email=$data['email']; 
+    $password=$data['password'];
 
-//  Route::get('/categories/bread', function () {
-//     $result='eeeeeeeeeee';
-//     dd($result);
-//     //return view('categories');
-//  })->name('blog.categories-bread');
+    $credentials=[
+        'email'=>$email,
+        'password'=>$password,
+    ];
 
-//  Route::get('/categories/breakfast', function () {
-//     $result='eeeeeeeeeee';
-//     dd($result);
-//     //return view('categories');
-//  })->name('blog.categories-breakfast');
+    if(\Illuminate\Support\Fasades\Auth::attemp($credentials)){
+        return redirect()->route('admin.auth.member');
+    }
 
-//  Route::get('/categories/meat', function () {
-//     $result='eeeeeeeeeee';
-//     dd($result);
-//     //return view('categories');
-//  })->name('blog.categories-meat');
+ })->name('admin.login.auth');
 
-//  Route::get('/categories/fastfood', function () {
-//     $result='eeeeeeeeeee';
-//     dd($result);
-//     //return view('categories');
-//  })->name('blog.categories-fastfood');
+ Route::get('/admin/logout', function () {
+    //return view('admin.login');
+ });
 
-//   Route::get('/categories/salad', function () {
-//     $result='eeeeeeeeeee';
-//     dd($result);
-//     //return view('categories');
-//  })->name('blog.categories-salad');
-
-//  Route::get('/categories/soup', function () {
-//     $result='eeeeeeeeeee';
-//     dd($result);
-//     //return view('categories');
-//  })->name('blog.categories-soup');
+ Route::get('/admin/member', function () {
+    //return view('admin.login');
+ })->name('admin.auth.member');

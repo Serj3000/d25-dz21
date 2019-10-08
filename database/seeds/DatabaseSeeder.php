@@ -19,16 +19,16 @@ class DatabaseSeeder extends Seeder
         $faker=\Faker\Factory::create();
 
         $categories=[
-            ['name'=>'Features', 'slug'=>'features'],
-            ['name'=>'Food', 'slug'=>'food'],
-            ['name'=>'Travel', 'slug'=>'travel'],
-            ['name'=>'Recipe', 'slug'=>'recipe'],
-            ['name'=>'Bread', 'slug'=>'bread'],
-            ['name'=>'Breakfast', 'slug'=>'breakfast'],
-            ['name'=>'Meat', 'slug'=>'meat'],
-            ['name'=>'Fastfood', 'slug'=>'fastfood'],
-            ['name'=>'Salad', 'slug'=>'salad'],
-            ['name'=>'Soup', 'slug'=>'soup']
+            ['name'=>'Features', 'slug'=>'features','created_at'=>date('Y-m-d'),'updated_at'=>date('Y-m-d')],
+            ['name'=>'Food', 'slug'=>'food','created_at'=>date('Y-m-d'),'updated_at'=>date('Y-m-d')],
+            ['name'=>'Travel', 'slug'=>'travel','created_at'=>date('Y-m-d'),'updated_at'=>date('Y-m-d')],
+            ['name'=>'Recipe', 'slug'=>'recipe','created_at'=>date('Y-m-d'),'updated_at'=>date('Y-m-d')],
+            ['name'=>'Bread', 'slug'=>'bread','created_at'=>date('Y-m-d'),'updated_at'=>date('Y-m-d')],
+            ['name'=>'Breakfast', 'slug'=>'breakfast','created_at'=>date('Y-m-d'),'updated_at'=>date('Y-m-d')],
+            ['name'=>'Meat', 'slug'=>'meat','created_at'=>date('Y-m-d'),'updated_at'=>date('Y-m-d')],
+            ['name'=>'Fastfood', 'slug'=>'fastfood','created_at'=>date('Y-m-d'),'updated_at'=>date('Y-m-d')],
+            ['name'=>'Salad', 'slug'=>'salad','created_at'=>date('Y-m-d'),'updated_at'=>date('Y-m-d')],
+            ['name'=>'Soup', 'slug'=>'soup','created_at'=>date('Y-m-d'),'updated_at'=>date('Y-m-d')]
         ];
 
         DB::table('categories')->insert($categories);
@@ -37,6 +37,8 @@ class DatabaseSeeder extends Seeder
             ['name' => 'Sara Jancks',
             'email' => 'sarach.jons@rolty.com',
             'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
+            'created_at'=>date('Y-m-d'),
+            'updated_at'=>date('Y-m-d'),
             //'remember_token' => Str::random(10),
             ]
         ];
@@ -59,6 +61,7 @@ class DatabaseSeeder extends Seeder
         //     'preview_image'=>'lp'.rand(1,5).'.jpg',
         //     'preview_cover'=>rand(1,20).'.jpg',
         //     'created_at'=>date('Y-m-d')],
+        //     'updated_at'=>date('Y-m-d'),
         //                 ['user_id'=>$user->id,
         //     'category_id'=>rand(1,10),
         //     'title'=>$faker->sentence(),
@@ -68,6 +71,7 @@ class DatabaseSeeder extends Seeder
         //     'preview_image'=>'lp'.rand(1,5).'.jpg',
         //     'preview_cover'=>rand(1,20).'.jpg',
         //     'created_at'=>date('Y-m-d')],
+        //     'updated_at'=>date('Y-m-d'),
         //                 ['user_id'=>$user->id,
         //     'category_id'=>rand(1,10),
         //     'title'=>$faker->sentence(),//'Vegetarian Spring Pho with Sweet Potato Noodles and Heirloom Beans',
@@ -77,6 +81,7 @@ class DatabaseSeeder extends Seeder
         //     'preview_image'=>'lp'.rand(1,5).'.jpg',
         //     'preview_cover'=>rand(1,20).'.jpg',
         //     'created_at'=>date('Y-m-d')],
+        //     'updated_at'=>date('Y-m-d'),
         //                     ['user_id'=>$user->id,
         //     'category_id'=>rand(1,10),
         //     'title'=>$faker->sentence(),//'Vegetarian Spring Pho with Sweet Potato Noodles and Heirloom Beans',
@@ -86,6 +91,7 @@ class DatabaseSeeder extends Seeder
         //     'preview_image'=>'lp'.rand(1,5).'.jpg',
         //     'preview_cover'=>rand(1,20).'.jpg',
         //     'created_at'=>date('Y-m-d')],
+        //     'updated_at'=>date('Y-m-d'),
         //                     ['user_id'=>$user->id,
         //     'category_id'=>rand(1,10),
         //     'title'=>$faker->sentence(),//'Vegetarian Spring Pho with Sweet Potato Noodles and Heirloom Beans',
@@ -95,6 +101,7 @@ class DatabaseSeeder extends Seeder
         //     'preview_image'=>'lp'.rand(1,5).'.jpg',
         //     'preview_cover'=>rand(1,20).'.jpg',
         //     'created_at'=>date('Y-m-d')],
+        //     'updated_at'=>date('Y-m-d'),
         // ];
 
         // DB::table('posts')->insert($posts);

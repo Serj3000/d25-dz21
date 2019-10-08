@@ -37,9 +37,10 @@
                 </ul>
             </div>
         </li>
-        <li><a href="#">Travel</a></li>
+        {{-- <li><a href="#">Travel</a></li> --}}
         <li><a href="/about-us">About</a></li>
         <li><a href="/contact">Contact</a></li>
+        <li><a href="{{route('admin.login.get')}}">Logout</a></li>
     </ul>
 
 </div>

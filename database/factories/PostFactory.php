@@ -26,5 +26,6 @@ $factory->define(Post::class, function (Faker $faker) {
             'body'=>'<p>'.$faker->paragraph().'</p><p>'.$faker->paragraph().'</p><h6>'.$faker->sentence().'</h6><p>'.$faker->paragraph().'</p><h6>'.$faker->name.'</h6><p>'.$faker->paragraph().'</p><p>'.$faker->paragraph().'</p>',
             'preview_image'=>'lp'.rand(1,5).'.jpg',
             'preview_cover'=>rand(1,20).'.jpg',
-            'created_at'=>date('Y-m-d')];
+            'created_at'=>date('Y-m-d'),
+            'updated_at'=>date('Y-m-d'),];
 });
