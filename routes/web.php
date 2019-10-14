@@ -1,5 +1,10 @@
 <?php
 
+// use Illuminate\Http\Request;
+// use Illuminate\Support\Facades\Auth;
+// use App\Http\Controllers\Controller;
+// use Illuminate\Support\Facades\Validator;
+
 use App\Post;
 use App\Category;
 use App\User;
@@ -60,40 +65,77 @@ Route::get('/test', function () {
 Route::get('/categories', function () {
     $posts=Post::latest()->paginate(5);
     return view('categories',['postas'=>$posts]);
- })->name('blog.categories');
+})->name('blog.categories');
 
 //___________________________________________
 
 Route::get('/admin/login', function () {
-    //return view('admin.login');
     return view('/admin/login');
- })->name('admin.login.get');;
+})->name('admin.login.get');
 
- Route::post('/admin/login', function (Illuminate\Http\Request $request) {
+Route::post('/admin/login', function (Illuminate\Http\Request $request) {
 
-    $data=$request->validate([
-        'email'=>'required|email|exists:users.email',
-        'password'=>'required|min:8|max:100',
-    ]);
+$data=$request->validate([
+    'email'=>'required|email|exists:users',//,email',
+    'password'=>'required|min:8|max:100',
+]);
 
-    $email=$data['email']; 
-    $password=$data['password'];
+$email=$data['email']; 
+$password=$data['password'];
 
-    $credentials=[
-        'email'=>$email,
-        'password'=>$password,
+$credentials=[
+    'email'=>$email,
+    'password'=>$password,
+];
+
+//dd($data);
+
+if(\Illuminate\Support\Facades\Auth::attempt($credentials)){
+    return redirect()->route('admin.auth.member');
+}
+
+})->name('admin.login.auth');
+
+Route::get('/admin/logout', function () {
+\Illuminate\Support\Facades\Auth::logout();
+return redirect('/');
+})->middleware('auth'); // middleware('auth') здесь необходим, для случая, когда небыл выполнен login
+
+Route::get('/admin/member', function () {
+    //$user=\Illuminate\Support\Fasades\Auth::user();
+    //dd($user);
+    //return view('admin.login');
+    return view('contact');
+})->name('admin.auth.member');
+
+ //______________________________________________________________________________
+
+//https://developer.github.com/apps/building-oauth-apps/authorizing-oauth-apps/
+
+Route::get('/oauth', function () {
+    $url="https://github.com/login/oauth/authorize"; 
+    $parameters=[
+        'client_id'=>'',
+        'redirect_uri'=>'http://d26test-dz20.ua/callback',
+        'scope'=>'user'
     ];
 
-    if(\Illuminate\Support\Fasades\Auth::attemp($credentials)){
-        return redirect()->route('admin.auth.member');
-    }
+    return view("oauth",['url'=>$url.'?'.http_build_query($parameters)]);
 
- })->name('admin.login.auth');
+});
 
- Route::get('/admin/logout', function () {
-    //return view('admin.login');
- });
+Route::get('/callback', function (\Illuminate\Http\Request $request) {
+    // $url="https://github.com/login/oauth/access_token";   //POST https://github.com/login/oauth/access_token
 
- Route::get('/admin/member', function () {
-    //return view('admin.login');
- })->name('admin.auth.member');
+    // $code=$request->get('code');
+
+    // $parameters=[
+    //     'client_id'=>'',
+    //     'client_secret'=>'',
+    //     'code'=>$code,
+    //     'redirect_uri'=>'http://d26test-dz20.ua/callback',     
+    // ];
+
+    // $url=>$url.'?'.http_build_query($parameters);
+
+});
