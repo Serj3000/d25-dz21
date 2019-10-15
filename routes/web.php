@@ -67,7 +67,8 @@ Route::get('/categories', function () {
     return view('categories',['postas'=>$posts]);
 })->name('blog.categories');
 
-//___________________________________________
+
+//______________Start_d25-dz21__________________
 
 Route::get('/admin/login', function () {
     return view('/admin/login');
@@ -76,7 +77,7 @@ Route::get('/admin/login', function () {
 Route::post('/admin/login', function (Illuminate\Http\Request $request) {
 
 $data=$request->validate([
-    'email'=>'required|email|exists:users',//,email',
+    'email'=>'required|email|exists:users,email',
     'password'=>'required|min:8|max:100',
 ]);
 
@@ -91,6 +92,7 @@ $credentials=[
 //dd($data);
 
 if(\Illuminate\Support\Facades\Auth::attempt($credentials)){
+    echo '$credentials= '.$credentials['email'];
     return redirect()->route('admin.auth.member');
 }
 
@@ -102,29 +104,32 @@ return redirect('/');
 })->middleware('auth'); // middleware('auth') здесь необходим, для случая, когда небыл выполнен login
 
 Route::get('/admin/member', function () {
-    //$user=\Illuminate\Support\Fasades\Auth::user();
+    $user=\Illuminate\Support\Facades\Auth::user();
     //dd($user);
-    //return view('admin.login');
-    return view('contact');
+    //return view('/admin/login');
+    //return view('contact');
 })->name('admin.auth.member');
 
- //______________________________________________________________________________
+//_____________End_d25-dz21_________________
+
+
+
 
 //https://developer.github.com/apps/building-oauth-apps/authorizing-oauth-apps/
 
-Route::get('/oauth', function () {
-    $url="https://github.com/login/oauth/authorize"; 
-    $parameters=[
-        'client_id'=>'',
-        'redirect_uri'=>'http://d26test-dz20.ua/callback',
-        'scope'=>'user'
-    ];
+// Route::get('/oauth', function () {
+//     $url="https://github.com/login/oauth/authorize"; 
+//     $parameters=[
+//         'client_id'=>'',
+//         'redirect_uri'=>'http://d26test-dz20.ua/callback',
+//         'scope'=>'user'
+//     ];
 
-    return view("oauth",['url'=>$url.'?'.http_build_query($parameters)]);
+//     return view("oauth",['url'=>$url.'?'.http_build_query($parameters)]);
 
-});
+// });
 
-Route::get('/callback', function (\Illuminate\Http\Request $request) {
+// Route::get('/callback', function (\Illuminate\Http\Request $request) {
     // $url="https://github.com/login/oauth/access_token";   //POST https://github.com/login/oauth/access_token
 
     // $code=$request->get('code');

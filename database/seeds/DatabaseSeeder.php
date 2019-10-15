@@ -35,11 +35,11 @@ class DatabaseSeeder extends Seeder
 
         $users=[
             ['name' => 'Sara Jancks',
-            'email' => 'sarach.jons@rolty.com',
-            'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
-            'created_at'=>date('Y-m-d'),
-            'updated_at'=>date('Y-m-d'),
-            //'remember_token' => Str::random(10),
+             'email' => 'sarach.jons@rolty.com',
+             'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret //password
+             'remember_token' => Str::random(10),
+             'created_at'=>date('Y-m-d'),
+             'updated_at'=>date('Y-m-d'),
             ]
         ];
 

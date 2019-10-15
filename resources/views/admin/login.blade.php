@@ -41,13 +41,13 @@
     @endif --}}
 
     @error('email')
-        <p>{{$massage}}</p>
+        <p>{{$message}}</p>
     @enderror
     <input type='text' name='email' value='sarach.jons@rolty.com'/>
     <br>
 
     @error('password')
-        <p>{{$massage}}</p>
+        <p>{{$message}}</p>
     @enderror
     <input type='password' name='password' value='password'/>
     <br>
